@@ -1,6 +1,4 @@
-java
-
-  public class Tarea {
+public class Tarea {
     private String id;
     private String estado; //Pendiente, En Curso, Completado
     private String usuarioAsignado;
