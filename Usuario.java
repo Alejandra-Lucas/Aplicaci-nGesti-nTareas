@@ -1,5 +1,3 @@
-java
-
 public abstract class Usuario {
   protected String id;
   protected String nombre; 
