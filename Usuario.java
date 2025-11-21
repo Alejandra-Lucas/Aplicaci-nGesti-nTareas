@@ -2,6 +2,7 @@ public abstract class Usuario {
   protected String id;
   protected String nombre; 
   protected String nickname;
+  protected String correo;
   protected String password; 
 
 public Usuario(String id, String nombre, String nickname, String correo, String password) {

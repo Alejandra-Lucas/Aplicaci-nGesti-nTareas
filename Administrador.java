@@ -1,12 +1,12 @@
 public class Administrador extends Usuario {
 
-    public Administrador(String id, String nombre, String correo, String password)
+    public Administrador(String id, String nombre, String nickname,String correo, String password)
  {
-      super(id, nombre, nickname, correo, password) 
+      super(id, nombre, nickname, correo, password);
     }
 
     @Override
-    publicvoid mostrarMenu() {
+    public void mostrarMenu() {
       System.out.println("=== MENÚ ADMINISTRADOR ===");
       System.out.println("1. Crear nuevo usuario");
       System.out.println("2. Crear tarea");

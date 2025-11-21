@@ -1,6 +1,6 @@
 public class Desarrollador extends Usuario {
 
-    public Desarrollador(String id; String nombre; String nickname, String correo, String password)
+    public Desarrollador(String id, String nombre, String nickname, String correo, String password)
     {
       super(id, nombre, nickname, correo, password);
     }

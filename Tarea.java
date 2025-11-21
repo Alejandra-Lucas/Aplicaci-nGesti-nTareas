@@ -8,32 +8,34 @@ public class Tarea {
     private String fechaEstimadaFin;
     private String fechaFinReal;
 
-    public Tarea(String id, String descripcion, Usuario usuario, String fechaEstimadaInicio, String fechaEstimadaFin) {
+    public Tarea(String id, String descripcion, String usuarioAsignado, String fechaEstimadaInicio, String fechaEstimadaFin) {
       this. id = id;
       this. descripcion = descripcion;
-      this.usuarioAsignado = usuario;
+      this.usuarioAsignado = usuarioAsignado;
       this.estado = "Pendiente";
       this.fechaEstimadaInicio = fechaEstimadaInicio; 
-      this.fechaEstimadaFin = fechaEstimadFin;
+      this.fechaEstimadaFin = fechaEstimadaFin;
       this.fechaInicioReal = ""; 
-      this.fechafinReal = "";
+      this.fechaFinReal = "";
     }
-
+    // Definición de métodos getter para acceder a los atributos de clase tarea
     public String getId() {return id; }
     public String getEstado() {return estado; }
-    public Usuario getUsuarioAsignado() {return usuarioAsignado; }
+    public String getUsuarioAsignado() {return usuarioAsignado; }
     public String getDescripcion() { return descripcion; }
-    public String getFechaEstimadaInicio() { return FechaEstimadaInicio; }
-    public String getFechaInicioReal() { return FechaInicioReal; }
-    public String getFechaEstimadaFin () { return FechaEstimadaFin; }
-    public String getFechaFinReal() {return FechaFinReal; }
+    public String getFechaEstimadaInicio() { return fechaEstimadaInicio; }
+    public String getFechaInicioReal() { return fechaInicioReal; }
+    public String getFechaEstimadaFin () { return fechaEstimadaFin; }
+    public String getFechaFinReal() {return fechaFinReal; }
+
+// Definición de métodos setter para actualizar los atributos de clase tarea
 
 public void setEstado(String nuevoEstado) {
   this.estado = nuevoEstado;
 }
 
-public void setUsuarioAsignado(Usuario usuario) {
-  this.usuarioAsignado = usuario;
+public void setUsuarioAsignado(String usuarioAsignado) {
+  this.usuarioAsignado = usuarioAsignado;
 }
 
 public void setDescripcion(String descripcion) {
@@ -57,7 +59,7 @@ public void iniciarTarea(String fechaInicioReal) {
   public String toString() {
   return "Tarea ID: " + id +
     " | Estado: " + estado +
-    " | Asignada a" +usuarioAsignado.getNombre() +
+    " | Asignada a" +usuarioAsignado +
     " | Descripcion: " + descripcion;
 }
 }
