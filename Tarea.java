@@ -10,17 +10,17 @@ public class Tarea {
 
     public Tarea(String id, String descripcion, Usuario usuario, String fechaEstimadaInicio, String fechaEstimadaFin) {
       this. id = id;
-      this. descripcion = descripcion
+      this. descripcion = descripcion;
       this.usuarioAsignado = usuario;
       this.estado = "Pendiente";
       this.fechaEstimadaInicio = fechaEstimadaInicio; 
-      this.fechaEstimadaFin = fechaEstimadFin
+      this.fechaEstimadaFin = fechaEstimadFin;
       this.fechaInicioReal = ""; 
       this.fechafinReal = "";
     }
 
-    public String getId() [return id; }
-    public String getEstado() [return estado; }
+    public String getId() {return id; }
+    public String getEstado() {return estado; }
     public Usuario getUsuarioAsignado() {return usuarioAsignado; }
     public String getDescripcion() { return descripcion; }
     public String getFechaEstimadaInicio() { return FechaEstimadaInicio; }
@@ -29,7 +29,7 @@ public class Tarea {
     public String getFechaFinReal() {return FechaFinReal; }
 
 public void setEstado(String nuevoEstado) {
-  this estado = nuevoEstado;
+  this.estado = nuevoEstado;
 }
 
 public void setUsuarioAsignado(Usuario usuario) {
@@ -57,7 +57,7 @@ public void iniciarTarea(String fechaInicioReal) {
   public String toString() {
   return "Tarea ID: " + id +
     " | Estado: " + estado +
-    " | "Asignada a" +usuarioAsignado.getNombre() +
+    " | Asignada a" +usuarioAsignado.getNombre() +
     " | Descripcion: " + descripcion;
 }
 }
