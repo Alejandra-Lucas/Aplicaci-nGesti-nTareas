@@ -24,7 +24,7 @@ public class MenuManager {
                 System.out.println("1. Iniciar Sesión");
                 System.out.println("2. Salir");
                 System.out.print("Seleccione una opción: ");
-                int opcion = Integer.parseInt(scanner.nextLine());
+                int opcion = leerEntero();
 
                 switch (opcion) {
                     case 1:
@@ -70,14 +70,36 @@ public class MenuManager {
         }
     }
 
-    // ----- Menú Administrador -----
-    private void menuAdmin(){}
+    // ------ Menú Administrador ------
+    private void menuAdmin(){
+        boolean salir = false;
+        while (!salir) {
+            System.out.println("--- Menú Administrador ---");
+            System.out.println("1. Crear Usuario");
+            System.out.println("2. Crear tarea nueva");
+            System.out.println("3. Ver todas las tareas");
+            System.out.println("4. Actualizar tarea");
+            System.out.println("5. Eliminar tarea");
+            System.out.println("6. Cerrar sesión");
+            System.out.print("Seleccione una opción: ");
+            int opcion = leerEntero();
+        }
+    }
 
-    // ----- Menú Desarrollador -----
+    // ------ Menú Desarrollador ------
     private void menuDesarrollador(){}
 
-    // ----- Menú Invitado -----
+    // ------ Menú Invitado ------
     private void menuInvitado(){}
+
+    // Método para leer números enteros
+    private int leerEntero() {
+        try{
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            return -1; // Valor inválido
+        }
+    }
 
 
 } // Fin de la clase MenuManager
