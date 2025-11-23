@@ -1,14 +1,22 @@
 import java.util.List;
+
 public class SistemaLogin {
+
     // Método para verificar las credenciales de inicio de sesión
-    public Usuario iniciarSesion(String correo, String password, List<Usuario> usuarios) throws Exception {
+    public Usuario iniciarSesion(String credencial, String password, GestorUsuarios gestorUsuarios) throws Exception {
+        List<Usuario> usuarios = gestorUsuarios.getUsuarios();
         for (Usuario user : usuarios) {
-            boolean credencialValida = user.getCorreo().equals(correo) && user.getPassword().equals(password);
+
+            // Verificar correo o nickname
+            boolean credencialValida = user.getCorreo().equals(credencial) || user.getNickname().equals(credencial);
             if (credencialValida) { 
-                return user; // Credenciales válidas
-            } throw new Exception("Contraseña incorrecta.");
+                if (user.getPassword().equals(password)) {
+                    return user; // Credenciales correctas
+            } else{
+                throw new Exception("Contraseña incorrecta.");
+            }
+            }
         }
-        throw new Exception("Correo no encontrado.");
-        
+        throw new Exception("Usuario no encontrado.");
     }
 }
