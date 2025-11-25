@@ -1,6 +1,7 @@
 import java.time.LocalDate;
+import java.io.Serializable;
 
-public class Tarea {
+public class Tarea implements Serializable {
     private int id;
     private String estado; //Pendiente, En Curso, Completado
     private Usuario usuarioAsignado;
@@ -62,6 +63,13 @@ public void iniciarTarea(LocalDate fechaInicioReal) {
   this.fechaInicioReal = fechaInicioReal;
 }
 
+public void setFechaInicioReal(LocalDate fechaInicioReal) {
+  this.fechaInicioReal = fechaInicioReal;
+}
+
+public void setFechaFinReal(LocalDate fechaFinReal) {
+  this.fechaFinReal = fechaFinReal;
+}
 
 
 @Override
