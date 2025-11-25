@@ -4,7 +4,7 @@ import java.io.*;
 
 public class GestorTareas {
     private List<Tarea> tareas;
-    private final String ARCHIVO_TAREAS = "tareas.txt";
+    private final String ARCHIVO_TAREAS = "tareas.dat";
     
     public GestorTareas() {
         this.tareas = new ArrayList<>();
@@ -13,13 +13,14 @@ public class GestorTareas {
     }
     
     public boolean crearTarea(Tarea tarea) {
+        // Método para crear una nueva tarea
         try {
         int nuevoId = 1;
-        if (!tareas.isEmpty()) {
+        if (!tareas.isEmpty()) { // Creación de ID
             nuevoId = tareas.get(getTotalTareas() - 1).getId() + 1;
         }
         tarea.setId(nuevoId);
-        tarea.setEstado("Pendiente");
+        tarea.setEstado("Pendiente"); // Estado inicial
         tareas.add(tarea);
         guardarTareas();
         return true;
@@ -33,7 +34,7 @@ public class GestorTareas {
         return new ArrayList<>(tareas); 
     }
     
-    public List<Tarea> getTareasPorUsuario(String usuario) {
+    public List<Tarea> getTareasPorUsuario(Usuario usuario) {
         List<Tarea> resultado = new ArrayList<>();
         for (Tarea tarea : tareas) {
             if (tarea.getUsuarioAsignado().equals(usuario)) {
@@ -88,6 +89,7 @@ public class GestorTareas {
         return tareas.size();
     }
     private void guardarTareas() {
+        // Guardar la lista de tareas en un archivo
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_TAREAS))) {
             oos.writeObject(tareas);
         } catch (IOException e) {
