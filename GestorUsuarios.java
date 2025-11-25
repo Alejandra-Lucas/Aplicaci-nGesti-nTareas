@@ -1,18 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 public class GestorUsuarios {
   private List<Usuario> usuarios;
+  private final String ARCHIVO_USUARIOS = "usuarios.dat";
 
   public GestorUsuarios() {
     usuarios = new ArrayList<>();
-    cargarUsuariosPrueba();
-  }
-
-  private void cargarUsuariosPrueba() {
-    usuarios.add(new Administrador(1, "Admin principal", "admin", "admin@correo.com", "123"));
-    usuarios.add(new Desarrollador(2, "Ana Dev", "anadev", "ana@correo.com", "123"));
-    usuarios.add(new Invitado(3, "Invitado Test", "invitado", "invitado@correo.com", "123"));
+    cargarUsuarios();
   }
 
   public Usuario autenticar(String correoNickname, String password) {
@@ -26,7 +22,19 @@ public class GestorUsuarios {
   } 
 
   public boolean crearUsuario(Usuario nuevoUsuario) {
+    // Método para crear un nuevo usuario
+    int nuevoId = 1;
+    if (!usuarios.isEmpty()) { // Creación de ID
+      nuevoId = usuarios.get(usuarios.size() - 1).getId() + 1;
+    }
+    nuevoUsuario.setId(nuevoId);
+    
+    if (getUsuarioPorNickname(nuevoUsuario.getNickname()) != null) {
+      System.out.println("Error: El nickname ya existe.");
+      return false;
+    }
     usuarios.add(nuevoUsuario);
+    guardarUsuarios();
     return true;
   }
 
@@ -49,5 +57,39 @@ public class GestorUsuarios {
       }
     }
     return null;
+  }
+
+  private void guardarUsuarios() {
+    // Guardar usuarios en archivo
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARCHIVO_USUARIOS))) {
+      oos.writeObject(usuarios);
+    } catch (IOException e) {
+      System.out.println("Error al guardar usuarios: " + e.getMessage());
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  private void cargarUsuarios() {
+    // Cargar usuarios desde archivo
+    File archivo = new File(ARCHIVO_USUARIOS);
+    
+    if (archivo.exists()) {
+      try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
+        usuarios = (List<Usuario>) ois.readObject();
+      } catch (IOException | ClassNotFoundException e) {
+        System.out.println("Error al cargar usuarios: " + e.getMessage());
+        usuarios = new ArrayList<>();
+      }
+    } else {
+      cargarUsuariosPrueba();
+    }
+  }
+
+  private void cargarUsuariosPrueba() {
+    // Usuarios de prueba si no existe el archivo
+    usuarios.add(new Administrador(1, "Admin Principal", "admin", "admin@correo.com", "123"));
+    usuarios.add(new Desarrollador(2, "Ana Dev", "anadev", "ana@correo.com", "123"));
+    usuarios.add(new Invitado(3, "Invitado Test", "invitado", "invitado@correo.com", "123"));
+    guardarUsuarios();
   }
 }
